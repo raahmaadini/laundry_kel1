@@ -24,12 +24,17 @@
 
         <nav class="p-4 space-y-2">
             <a href="{{ route('dashboard') }}" class="block px-4 py-2 rounded hover:bg-gray-100">🏠 Dashboard</a>
-            <a href="{{ route('pelanggan.index') }}" class="block px-4 py-2 rounded hover:bg-gray-100">👥 Pelanggan</a>
-            <a href="{{ route('layanan.index') }}" class="block px-4 py-2 rounded hover:bg-gray-100">⚙️ Layanan</a>
-            <a href="{{ route('transaksi.index') }}" class="block px-4 py-2 rounded hover:bg-gray-100">💸 Transaksi</a>
-            <a href="{{ route('laporan.index') }}" class="block px-4 py-2 rounded hover:bg-gray-100">📊 Laporan</a>
 
-            @if(auth()->user()->role == 'owner')
+            {{-- Menu hanya untuk Admin --}}
+            @if(auth()->check() && auth()->user()->isAdmin())
+                <a href="{{ route('pelanggan.index') }}" class="block px-4 py-2 rounded hover:bg-gray-100">👥 Pelanggan</a>
+                <a href="{{ route('layanan.index') }}" class="block px-4 py-2 rounded hover:bg-gray-100">⚙️ Layanan</a>
+                <a href="{{ route('transaksi.index') }}" class="block px-4 py-2 rounded hover:bg-gray-100">💸 Transaksi</a>
+            @endif
+
+            {{-- Menu hanya untuk Owner --}}
+            @if(auth()->check() && auth()->user()->isOwner())
+                <a href="{{ route('laporan.index') }}" class="block px-4 py-2 rounded hover:bg-gray-100">📊 Laporan</a>
                 <a href="{{ route('pengaturan.index') }}" class="block px-4 py-2 rounded hover:bg-gray-100">🧑‍💼 Pengaturan</a>
             @endif
 
