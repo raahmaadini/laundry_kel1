@@ -2,30 +2,21 @@
 
 @section('content')
 
-<h1 class="text-2xl font-bold mb-6">👤 Profil Saya</h1>
+<div class="mb-6">
+    <h1 class="text-3xl font-bold">👤 Profil Saya</h1>
+    <p class="text-sm text-slate-500 mt-1">Kelola informasi akun dan pengaturan keamanan Anda</p>
+</div>
 
-<div class="max-w-3xl space-y-6">
+<div class="max-w-4xl space-y-6">
 
     <!-- Update Profile Information -->
-    <div class="bg-white p-6 shadow rounded-lg">
-        <div class="max-w-xl">
-            @include('profile.partials.update-profile-information-form')
-        </div>
-    </div>
+    @include('profile.partials.update-profile-information-form')
 
     <!-- Update Password -->
-    <div class="bg-white p-6 shadow rounded-lg">
-        <div class="max-w-xl">
-            @include('profile.partials.update-password-form')
-        </div>
-    </div>
+    @include('profile.partials.update-password-form')
 
     <!-- Delete Account -->
-    <div class="bg-white p-6 shadow rounded-lg">
-        <div class="max-w-xl">
-            @include('profile.partials.delete-user-form')
-        </div>
-    </div>
+    @include('profile.partials.delete-user-form')
 
 </div>
 

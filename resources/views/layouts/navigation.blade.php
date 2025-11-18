@@ -15,6 +15,19 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+                    <!-- Example: menu yang hanya muncul untuk Admin -->
+                    @if(auth()->check() && auth()->user()->isAdmin())
+                        <x-nav-link :href="route('pengaturan.index')" :active="request()->routeIs('pengaturan.*')">
+                            {{ __('Pengaturan') }}
+                        </x-nav-link>
+                    @endif
+
+                    <!-- Example: menu yang hanya muncul untuk Owner -->
+                    @if(auth()->check() && auth()->user()->isOwner())
+                        <x-nav-link :href="route('laporan.index')" :active="request()->routeIs('laporan.*')">
+                            {{ __('Laporan') }}
+                        </x-nav-link>
+                    @endif
                 </div>
             </div>
 
@@ -70,6 +83,17 @@
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
+            @if(auth()->check() && auth()->user()->isAdmin())
+                <x-responsive-nav-link :href="route('pengaturan.index')">
+                    {{ __('Pengaturan') }}
+                </x-responsive-nav-link>
+            @endif
+
+            @if(auth()->check() && auth()->user()->isOwner())
+                <x-responsive-nav-link :href="route('laporan.index')">
+                    {{ __('Laporan') }}
+                </x-responsive-nav-link>
+            @endif
         </div>
 
         <!-- Responsive Settings Options -->
